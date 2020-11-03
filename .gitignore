@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/QuestingTool/.vs/QuestingTool/v16
+/QuestingTool/QuestingTool/obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+/QuestingTool/QuestingTool/obj/Debug
+/QuestingTool/QuestingTool/Properties
+/QuestingTool/QuestingTool/QuestingTool.csproj
+/QuestingTool/QuestingTool.sln

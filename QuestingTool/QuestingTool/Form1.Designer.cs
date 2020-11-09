@@ -55,6 +55,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonRemoveQuest = new System.Windows.Forms.Button();
             this.buttonClearQuest = new System.Windows.Forms.Button();
+            this.buttonSaveQuest = new System.Windows.Forms.Button();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -71,33 +72,34 @@
             // 
             // textBoxResolutions
             // 
-            this.textBoxResolutions.Location = new System.Drawing.Point(118, 3);
+            this.textBoxResolutions.Location = new System.Drawing.Point(104, 3);
             this.textBoxResolutions.Multiline = true;
             this.textBoxResolutions.Name = "textBoxResolutions";
-            this.textBoxResolutions.Size = new System.Drawing.Size(268, 106);
+            this.textBoxResolutions.Size = new System.Drawing.Size(297, 106);
             this.textBoxResolutions.TabIndex = 11;
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.Location = new System.Drawing.Point(118, 3);
+            this.textBoxDescription.AcceptsReturn = true;
+            this.textBoxDescription.Location = new System.Drawing.Point(104, 3);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(268, 106);
+            this.textBoxDescription.Size = new System.Drawing.Size(297, 106);
             this.textBoxDescription.TabIndex = 13;
             // 
             // textBoxObjectives
             // 
-            this.textBoxObjectives.Location = new System.Drawing.Point(118, 3);
+            this.textBoxObjectives.Location = new System.Drawing.Point(104, 3);
             this.textBoxObjectives.Multiline = true;
             this.textBoxObjectives.Name = "textBoxObjectives";
-            this.textBoxObjectives.Size = new System.Drawing.Size(268, 106);
+            this.textBoxObjectives.Size = new System.Drawing.Size(297, 106);
             this.textBoxObjectives.TabIndex = 9;
             // 
             // textBoxQuestName
             // 
-            this.textBoxQuestName.Location = new System.Drawing.Point(118, 3);
+            this.textBoxQuestName.Location = new System.Drawing.Point(104, 3);
             this.textBoxQuestName.Name = "textBoxQuestName";
-            this.textBoxQuestName.Size = new System.Drawing.Size(268, 22);
+            this.textBoxQuestName.Size = new System.Drawing.Size(297, 22);
             this.textBoxQuestName.TabIndex = 3;
             // 
             // label1
@@ -123,9 +125,9 @@
             "7",
             "8",
             "9"});
-            this.comboBoxDifficulty.Location = new System.Drawing.Point(118, 3);
+            this.comboBoxDifficulty.Location = new System.Drawing.Point(104, 3);
             this.comboBoxDifficulty.Name = "comboBoxDifficulty";
-            this.comboBoxDifficulty.Size = new System.Drawing.Size(268, 24);
+            this.comboBoxDifficulty.Size = new System.Drawing.Size(297, 24);
             this.comboBoxDifficulty.TabIndex = 5;
             // 
             // comboBoxCategory
@@ -135,9 +137,9 @@
             "0",
             "1",
             "2"});
-            this.comboBoxCategory.Location = new System.Drawing.Point(118, 3);
+            this.comboBoxCategory.Location = new System.Drawing.Point(104, 3);
             this.comboBoxCategory.Name = "comboBoxCategory";
-            this.comboBoxCategory.Size = new System.Drawing.Size(268, 24);
+            this.comboBoxCategory.Size = new System.Drawing.Size(297, 24);
             this.comboBoxCategory.TabIndex = 7;
             // 
             // comboBoxQuestList
@@ -145,9 +147,9 @@
             this.comboBoxQuestList.FormattingEnabled = true;
             this.comboBoxQuestList.Items.AddRange(new object[] {
             "New"});
-            this.comboBoxQuestList.Location = new System.Drawing.Point(113, 3);
+            this.comboBoxQuestList.Location = new System.Drawing.Point(93, 3);
             this.comboBoxQuestList.Name = "comboBoxQuestList";
-            this.comboBoxQuestList.Size = new System.Drawing.Size(273, 24);
+            this.comboBoxQuestList.Size = new System.Drawing.Size(317, 24);
             this.comboBoxQuestList.TabIndex = 24;
             // 
             // label7
@@ -163,54 +165,54 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.49315F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.50685F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.96162F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.03838F));
             this.tableLayoutPanel4.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.comboBoxQuestList, 1, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(389, 31);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(413, 31);
             this.tableLayoutPanel4.TabIndex = 26;
             // 
             // buttonAddQuest
             // 
-            this.buttonAddQuest.Location = new System.Drawing.Point(413, 14);
+            this.buttonAddQuest.Location = new System.Drawing.Point(431, 14);
             this.buttonAddQuest.Name = "buttonAddQuest";
-            this.buttonAddQuest.Size = new System.Drawing.Size(109, 23);
+            this.buttonAddQuest.Size = new System.Drawing.Size(85, 23);
             this.buttonAddQuest.TabIndex = 16;
             this.buttonAddQuest.Text = "Add";
             this.buttonAddQuest.UseVisualStyleBackColor = true;
-            this.buttonAddQuest.Click += new System.EventHandler(this.buttonAddQuest_Click_1);
+            this.buttonAddQuest.Click += new System.EventHandler(this.buttonAddQuest_Click);
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.58904F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.41096F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.textBoxQuestName, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(9, 19);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(389, 31);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(404, 31);
             this.tableLayoutPanel3.TabIndex = 27;
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.58904F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.41096F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel5.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.comboBoxDifficulty, 1, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(9, 56);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(389, 31);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(404, 31);
             this.tableLayoutPanel5.TabIndex = 28;
             // 
             // label8
@@ -226,15 +228,15 @@
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.58904F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.41096F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel6.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.comboBoxCategory, 1, 0);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(9, 93);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(389, 31);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(404, 31);
             this.tableLayoutPanel6.TabIndex = 29;
             // 
             // label9
@@ -250,15 +252,15 @@
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.58904F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.41096F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel7.Controls.Add(this.textBoxObjectives, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(404, 19);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(419, 19);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(389, 112);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(404, 112);
             this.tableLayoutPanel7.TabIndex = 30;
             // 
             // label2
@@ -274,15 +276,15 @@
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.58904F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.41096F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.21739F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.78261F));
             this.tableLayoutPanel8.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.textBoxResolutions, 1, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(404, 137);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(419, 137);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(389, 112);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(404, 112);
             this.tableLayoutPanel8.TabIndex = 31;
             // 
             // label3
@@ -298,15 +300,15 @@
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 2;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.58904F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.41096F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel9.Controls.Add(this.label10, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.textBoxDescription, 1, 0);
             this.tableLayoutPanel9.Location = new System.Drawing.Point(9, 137);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(389, 112);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(404, 112);
             this.tableLayoutPanel9.TabIndex = 32;
             // 
             // label10
@@ -329,35 +331,46 @@
             this.groupBox1.Controls.Add(this.tableLayoutPanel3);
             this.groupBox1.Location = new System.Drawing.Point(12, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(803, 260);
+            this.groupBox1.Size = new System.Drawing.Size(834, 261);
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Quest Data";
             // 
             // buttonRemoveQuest
             // 
-            this.buttonRemoveQuest.Location = new System.Drawing.Point(528, 14);
+            this.buttonRemoveQuest.Location = new System.Drawing.Point(522, 14);
             this.buttonRemoveQuest.Name = "buttonRemoveQuest";
-            this.buttonRemoveQuest.Size = new System.Drawing.Size(109, 23);
+            this.buttonRemoveQuest.Size = new System.Drawing.Size(85, 23);
             this.buttonRemoveQuest.TabIndex = 34;
             this.buttonRemoveQuest.Text = "Remove";
             this.buttonRemoveQuest.UseVisualStyleBackColor = true;
             // 
             // buttonClearQuest
             // 
-            this.buttonClearQuest.Location = new System.Drawing.Point(643, 14);
+            this.buttonClearQuest.Location = new System.Drawing.Point(613, 14);
             this.buttonClearQuest.Name = "buttonClearQuest";
-            this.buttonClearQuest.Size = new System.Drawing.Size(109, 23);
+            this.buttonClearQuest.Size = new System.Drawing.Size(85, 23);
             this.buttonClearQuest.TabIndex = 35;
             this.buttonClearQuest.Text = "Clear";
             this.buttonClearQuest.UseVisualStyleBackColor = true;
+            // 
+            // buttonSaveQuest
+            // 
+            this.buttonSaveQuest.Location = new System.Drawing.Point(704, 14);
+            this.buttonSaveQuest.Name = "buttonSaveQuest";
+            this.buttonSaveQuest.Size = new System.Drawing.Size(85, 23);
+            this.buttonSaveQuest.TabIndex = 36;
+            this.buttonSaveQuest.Text = "Save";
+            this.buttonSaveQuest.UseVisualStyleBackColor = true;
+            this.buttonSaveQuest.Click += new System.EventHandler(this.buttonSaveQuest_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(826, 316);
+            this.ClientSize = new System.Drawing.Size(857, 320);
+            this.Controls.Add(this.buttonSaveQuest);
             this.Controls.Add(this.buttonClearQuest);
             this.Controls.Add(this.buttonRemoveQuest);
             this.Controls.Add(this.groupBox1);
@@ -414,6 +427,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonRemoveQuest;
         private System.Windows.Forms.Button buttonClearQuest;
+        private System.Windows.Forms.Button buttonSaveQuest;
     }
 }
 

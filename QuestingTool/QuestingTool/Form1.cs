@@ -30,9 +30,11 @@ namespace QuestingTool
             public List<QuestObject> quests { get; set; }
         }
 
-        private string getPath = "";
+        private string savePath = "";
+        private string forwardSlash = "\\";
 
-        private QuestJSON _questJson;
+        private QuestJSON _saveQuestJson;
+        private QuestJSON _tempQuestJson;
 
         public Form1()
         {
@@ -42,38 +44,170 @@ namespace QuestingTool
         private void Form1_Load(object sender, EventArgs e)
         {
             // Load the Quests.json
-            openFileDialog1.ShowDialog();
+            DialogResult result = openFileDialog1.ShowDialog();
 
-            string jsonString = File.ReadAllText(openFileDialog1.FileName);
-
-            string filename = openFileDialog1.FileName;
-            string [] paths = filename.Split('\\');
-            string file = paths[paths.Length - 1];
-
-            if (file != "Quests.json")
+            if (result == DialogResult.OK)
             {
-                MessageBox.Show("File opened is not Quests.json");
+                savePath = Path.GetDirectoryName(openFileDialog1.FileName);
 
-                Application.Exit();
+                string jsonString = File.ReadAllText(openFileDialog1.FileName);
+
+                string filename = openFileDialog1.FileName;
+                string [] paths = filename.Split('\\');
+                string file = paths[paths.Length - 1];
+
+                if (file != "Quests.json")
+                {
+                    MessageBox.Show("File opened is not Quests.json");
+
+                    Application.Exit();
+                }
+                else
+                {
+                    _tempQuestJson = JsonSerializer.Deserialize<QuestJSON>(jsonString);
+
+                    // Events
+                    comboBoxQuestList.SelectedIndexChanged += OnComboBoxQuestListSelectedIndexChanged;
+
+                    // Load titles on the combo box
+                    comboBoxQuestList.SelectedIndex = 0;
+                    foreach (QuestObject qo in _tempQuestJson.quests)
+                    {
+                        comboBoxQuestList.Items.Add(qo.id);
+                    }
+                }
             }
             else
             {
-                _questJson = JsonSerializer.Deserialize<QuestJSON>(jsonString);
+                MessageBox.Show("No file opened.");
 
-                // Load titles on the combo box
-                comboBoxQuestList.SelectedIndex = 0;
-                foreach (QuestObject qo in _questJson.quests)
-                {
-                    comboBoxQuestList.Items.Add(qo.id);
-                }
+                Application.Exit();
             }
         }
 
-        private void buttonGetPath_Click(object sender, EventArgs e)
+        private void OnComboBoxQuestListSelectedIndexChanged(object sender, EventArgs e)
         {
-            DialogResult d = folderBrowserDialog1.ShowDialog();
+            if (comboBoxQuestList.SelectedIndex == 0)
+            {
+                buttonAddQuest.Enabled = true;
+                buttonRemoveQuest.Enabled = false;
+                buttonClearQuest.Enabled = false;
 
-            //labelGetPath.Text = getPath = folderBrowserDialog1.SelectedPath;
+                ClearBoxes();
+            }
+            else
+            {
+                buttonAddQuest.Enabled = false;
+                buttonRemoveQuest.Enabled = true;
+                buttonClearQuest.Enabled = true;
+
+                ClearBoxes();
+                UpdateBoxes();
+            }
+        }
+
+        private void ClearBoxes()
+        {
+            textBoxQuestName.Text = "";
+            comboBoxDifficulty.SelectedIndex = -1;
+            comboBoxCategory.SelectedIndex = -1;
+
+            textBoxDescription.ScrollBars = ScrollBars.Vertical;
+            textBoxDescription.Text = "";
+
+            textBoxObjectives.ScrollBars = ScrollBars.Vertical;
+            textBoxObjectives.Text = "";
+
+            textBoxResolutions.ScrollBars = ScrollBars.Vertical;
+            textBoxResolutions.Text = "";
+        }
+
+        private void UpdateBoxes()
+        {
+            object item = comboBoxQuestList.Items[comboBoxQuestList.SelectedIndex];
+            QuestObject qo = FindQuestById(item.ToString());
+            
+            textBoxQuestName.Text = qo.id;
+            comboBoxDifficulty.SelectedIndex = FindDifficultyIndexByValue(qo.difficulty);
+            comboBoxCategory.SelectedIndex = FindCategoryIndexByValue(qo.categoryId);
+
+            textBoxDescription.ScrollBars = ScrollBars.Vertical;
+            textBoxDescription = AppendStringArray(textBoxDescription, qo.description);
+
+            textBoxObjectives.ScrollBars = ScrollBars.Vertical;
+            textBoxObjectives = AppendStringArray(textBoxObjectives, qo.objectives);
+
+            textBoxResolutions.ScrollBars = ScrollBars.Vertical;
+            textBoxResolutions = AppendStringArray(textBoxResolutions, qo.objectives);
+        }
+
+        private QuestObject FindQuestById(string pId)
+        {
+            List<QuestObject> questList = _tempQuestJson.quests;
+
+            QuestObject output = null;
+
+            foreach (QuestObject q in questList)
+            {
+                if (q.id == pId)
+                {
+                    output = q;
+                    break;
+                }
+            }
+
+            return output;
+        }
+
+        private int FindDifficultyIndexByValue(int pValue)
+        {
+            int output = -1;
+
+            System.Windows.Forms.ComboBox.ObjectCollection items = comboBoxDifficulty.Items;
+
+            for (int i = 0; i < items.Count; ++i)
+            {
+                if (int.Parse(items[i].ToString()) == pValue)
+                {
+                    output = i;
+                    break;
+                }
+            }
+
+            return output;
+        }
+
+        private int FindCategoryIndexByValue(int pValue)
+        {
+            int output = -1;
+
+            System.Windows.Forms.ComboBox.ObjectCollection items = comboBoxCategory.Items;
+
+            for (int i = 0; i < items.Count; ++i)
+            {
+                if (int.Parse(items[i].ToString()) == pValue)
+                {
+                    output = i;
+                    break;
+                }
+            }
+
+            return output;
+        }
+
+        private TextBox AppendStringArray(TextBox displayBox, string[] pStringArray)
+        {
+            for (int i = 0; i < pStringArray.Length; ++i)
+            {
+                displayBox.AppendText(pStringArray[i]);
+
+                if (i < pStringArray.Length - 1)
+                {
+                    displayBox.AppendText(Environment.NewLine);
+                }
+            }
+
+            return displayBox;
         }
 
         //{
@@ -107,114 +241,80 @@ namespace QuestingTool
 
         private void buttonAddQuest_Click(object sender, EventArgs e)
         {
-            //if (labelGetPath.Text == "<path>")
-            //{
-            //    MessageBox.Show("Path is not set");
-            //    return;
-            //}
+            DialogResult result = MessageBox.Show("Quest will be added.", "Adding Quest", MessageBoxButtons.OKCancel);
 
-            QuestJSON qj = new QuestJSON();
-            qj.quests = new List<QuestObject>();
-
-            QuestObject quest = new QuestObject();
-
-            quest.id = textBoxQuestName.Text;
-            quest.difficulty = int.Parse(comboBoxDifficulty.SelectedItem.ToString());
-            quest.categoryId = int.Parse(comboBoxCategory.SelectedItem.ToString());
-            quest.objectives = textBoxObjectives.Lines;
-            quest.resolutions = textBoxResolutions.Lines;
-
-            quest.description = textBoxDescription.Lines;
-
-            qj.quests.Add(quest);
-
-            string jsonString;
-            //jsonString = JsonSerializer.Serialize(questList);
-
-            jsonString = JsonSerializer.Serialize(qj);
-
-            //File.WriteAllText(labelGetPath.Text + "\\" + "test1.json", jsonString);
-
-            MessageBox.Show("Success!");
-        }
-
-        private void buttonGetFile_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.ShowDialog();
-
-            string jsonString = File.ReadAllText(openFileDialog1.FileName);
-            
-            _questJson = JsonSerializer.Deserialize<QuestJSON>(jsonString);
-
-            MessageBox.Show("Quests are loaded!");
-
-            foreach (QuestObject qo in _questJson.quests)
+            if (result == DialogResult.OK)
             {
-                //comboBoxQuestNames.Items.Add(qo.id);
-            }
-        }
-
-        private void buttonFindQuest_Click(object sender, EventArgs e)
-        {
-            //if (textBoxFindQuest.Text == "")
-            //{
-            //    MessageBox.Show("No search words found");
-            //    return;
-            //}
-
-            //QuestObject qo = FindQuestById(textBoxFindQuest.Text);
-            //if (qo != null)
-            //{
-            //    MessageBox.Show("Quest found!");
-
-            //    labelValueQuestName.Text = qo.id;
-            //    labelValueDifficulty.Text = qo.difficulty.ToString();
-            //    labelValueCategory.Text = qo.categoryId.ToString();
-            //    labelValueObjectives.Text = StringifyStringArray(qo.objectives);
-            //    labelValueResolutions.Text = StringifyStringArray(qo.resolutions);
-            //    labelValueDescription.Text = StringifyStringArray(qo.description);
-
-            //}
-        }
-
-        private QuestObject FindQuestById(string pId)
-        {
-            List<QuestObject> questList = _questJson.quests;
-
-            QuestObject output = null;
-
-            foreach(QuestObject q in questList)
-            {
-                if (q.id == pId)
+                if (HasEmptyBox())
                 {
-                    output = q;
-                    break;
+                    MessageBox.Show("Quest incomplete");
+                }
+                else
+                {
+                    QuestObject quest = new QuestObject();
+
+                    quest.id = textBoxQuestName.Text;
+                    quest.difficulty = int.Parse(comboBoxDifficulty.SelectedItem.ToString());
+                    quest.categoryId = int.Parse(comboBoxCategory.SelectedItem.ToString());
+                    quest.description = textBoxDescription.Lines;
+                    quest.objectives = textBoxObjectives.Lines;
+                    quest.resolutions = textBoxResolutions.Lines;
+
+                    _tempQuestJson.quests.Add(quest);
+
+                    MessageBox.Show("The quest has been added!");
                 }
             }
-
-            return output;
         }
 
-        private string StringifyStringArray(string[] pStringArray)
+        private bool HasEmptyBox()
         {
-            string output = "";
-
-            for (int i = 0; i < pStringArray.Length; ++i)
+            if (textBoxQuestName.Text == "")
             {
-                output += pStringArray[i];
-
-                if (i < pStringArray.Length - 1)
-                {
-                    output += "\n";
-                }
+                return true;
             }
 
-            return output;
+            if (comboBoxDifficulty.SelectedItem.ToString() == "")
+            {
+                return true;
+            }
+
+            if (comboBoxCategory.SelectedItem.ToString() == "")
+            {
+                return true;
+            }
+
+            if (textBoxDescription.Lines.Length == 0)
+            {
+                return true;
+            }
+
+            if (textBoxObjectives.Lines.Length == 0)
+            {
+                return true;
+            }
+
+            if (textBoxResolutions.Lines.Length == 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        private void buttonAddQuest_Click_1(object sender, EventArgs e)
+        private void buttonSaveQuest_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("This will overwrite the current Quests.json.\nAre you sure?", "Save Quests", MessageBoxButtons.YesNo);
 
+            if (result == DialogResult.Yes)
+            {
+                string jsonString;
+                jsonString = JsonSerializer.Serialize(_tempQuestJson);
+
+                File.WriteAllText(savePath + forwardSlash + "Quests.json", jsonString);
+
+                MessageBox.Show("Quests saved successfully!");
+            }
         }
     }
 }

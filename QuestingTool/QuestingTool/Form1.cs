@@ -316,5 +316,21 @@ namespace QuestingTool
                 MessageBox.Show("Quests saved successfully!");
             }
         }
+
+        private void buttonRemoveQuest_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("This will remove the current selected quest.\nAre you sure?", "Remove Quest", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                //_tempQuestJson.quests
+                _tempQuestJson.quests.RemoveAt(comboBoxQuestList.SelectedIndex - 1);
+                comboBoxQuestList.Items.RemoveAt(comboBoxQuestList.SelectedIndex);
+                comboBoxQuestList.SelectedIndex = 0;
+
+                ClearBoxes();
+            }
+        }
     }
 }

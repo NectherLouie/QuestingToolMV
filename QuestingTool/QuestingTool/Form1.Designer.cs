@@ -54,7 +54,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonRemoveQuest = new System.Windows.Forms.Button();
-            this.buttonClearQuest = new System.Windows.Forms.Button();
             this.buttonSaveQuest = new System.Windows.Forms.Button();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -344,19 +343,11 @@
             this.buttonRemoveQuest.TabIndex = 34;
             this.buttonRemoveQuest.Text = "Remove";
             this.buttonRemoveQuest.UseVisualStyleBackColor = true;
-            // 
-            // buttonClearQuest
-            // 
-            this.buttonClearQuest.Location = new System.Drawing.Point(613, 14);
-            this.buttonClearQuest.Name = "buttonClearQuest";
-            this.buttonClearQuest.Size = new System.Drawing.Size(85, 23);
-            this.buttonClearQuest.TabIndex = 35;
-            this.buttonClearQuest.Text = "Clear";
-            this.buttonClearQuest.UseVisualStyleBackColor = true;
+            this.buttonRemoveQuest.Click += new System.EventHandler(this.buttonRemoveQuest_Click);
             // 
             // buttonSaveQuest
             // 
-            this.buttonSaveQuest.Location = new System.Drawing.Point(704, 14);
+            this.buttonSaveQuest.Location = new System.Drawing.Point(761, 14);
             this.buttonSaveQuest.Name = "buttonSaveQuest";
             this.buttonSaveQuest.Size = new System.Drawing.Size(85, 23);
             this.buttonSaveQuest.TabIndex = 36;
@@ -371,7 +362,6 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(857, 320);
             this.Controls.Add(this.buttonSaveQuest);
-            this.Controls.Add(this.buttonClearQuest);
             this.Controls.Add(this.buttonRemoveQuest);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonAddQuest);
@@ -426,7 +416,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonRemoveQuest;
-        private System.Windows.Forms.Button buttonClearQuest;
         private System.Windows.Forms.Button buttonSaveQuest;
     }
 }

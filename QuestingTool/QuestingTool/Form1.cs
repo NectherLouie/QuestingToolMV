@@ -28,12 +28,16 @@ namespace QuestingTool
         class QuestJSON
         {
             public List<QuestObject> quests { get; set; }
+
+            public void Reset()
+            {
+                quests.Clear();
+            }
         }
 
         private string savePath = "";
         private string forwardSlash = "\\";
 
-        private QuestJSON _saveQuestJson;
         private QuestJSON _tempQuestJson;
 
         public Form1()
@@ -85,13 +89,33 @@ namespace QuestingTool
             }
         }
 
+        private void ReloadQuests()
+        {
+            MessageBox.Show("Reloading Quests.json");
+
+            string jsonString = File.ReadAllText(openFileDialog1.FileName);
+
+            // Reset
+            _tempQuestJson.Reset();
+            comboBoxQuestList.Items.Clear();
+            comboBoxQuestList.Items.Add("New");
+
+            _tempQuestJson = JsonSerializer.Deserialize<QuestJSON>(jsonString);
+
+            // Load titles on the combo box
+            comboBoxQuestList.SelectedIndex = 0;
+            foreach (QuestObject qo in _tempQuestJson.quests)
+            {
+                comboBoxQuestList.Items.Add(qo.id);
+            }
+        }
+
         private void OnComboBoxQuestListSelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxQuestList.SelectedIndex == 0)
             {
                 buttonAddQuest.Enabled = true;
                 buttonRemoveQuest.Enabled = false;
-                buttonClearQuest.Enabled = false;
 
                 ClearBoxes();
             }
@@ -99,7 +123,6 @@ namespace QuestingTool
             {
                 buttonAddQuest.Enabled = false;
                 buttonRemoveQuest.Enabled = true;
-                buttonClearQuest.Enabled = true;
 
                 ClearBoxes();
                 UpdateBoxes();
@@ -262,7 +285,7 @@ namespace QuestingTool
 
                     _tempQuestJson.quests.Add(quest);
 
-                    MessageBox.Show("The quest has been added!");
+                    MessageBox.Show("The quest has been added! Please click save to reload the quests.");
                 }
             }
         }
@@ -314,12 +337,13 @@ namespace QuestingTool
                 File.WriteAllText(savePath + forwardSlash + "Quests.json", jsonString);
 
                 MessageBox.Show("Quests saved successfully!");
+
+                ReloadQuests();
             }
         }
 
         private void buttonRemoveQuest_Click(object sender, EventArgs e)
         {
-
             DialogResult result = MessageBox.Show("This will remove the current selected quest.\nAre you sure?", "Remove Quest", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
